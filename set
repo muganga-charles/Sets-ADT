@@ -1,0 +1,48 @@
+class Set:
+    def __init__(self):
+        self.data = []
+    def add(self, value):
+        if value not in self.data:
+            self.data.append(value)
+    def remove(self, value):
+        if value in self.data:
+            self.data.remove(value)
+    def equals(self, other):
+        if len(self.data) != len(other.data):
+            return False
+        for i in self.data:
+            if i not in other.data:
+                return False
+        return True
+    def __len__(self):
+        return len(self.data)
+    def isSubsetOf(self, other):
+        for i in self.data:
+            if i not in other.data:
+                return False
+        return True
+    def intersection(self, other):
+        newSet = Set()
+        for i in self.data:
+            if i in other.data:
+                newSet.add(i)
+        return newSet
+    def isEmpty(self):
+        return len(self.data) == 0
+smith = Set()
+smith.add( "CSCI-112" )
+smith.add( "MATH-121" )
+smith.add( "HIST-340" )
+smith.add( "ECON-101" )
+roberts = Set()
+roberts.add( "POL-101" )
+roberts.add( "ANTH-230" )
+roberts.add( "CSCI-112" )
+roberts.add( "ECON-101" )
+print(smith.isSubsetOf(roberts))
+print(roberts.isSubsetOf(smith))
+print(smith.equals(roberts))
+
+print(smith.__len__())
+smith.remove("CSCI-112")
+print(smith.__len__())
